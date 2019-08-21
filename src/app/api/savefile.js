@@ -13,12 +13,8 @@ module.exports.save_file = (data, url) => {
 };
 
 module.exports.load_file = url => {
-  var resultvalue = "";
-  fetch(url)
+  return fetch(url)
     .then(response => response.text())
-    .then(data => {
-      resultvalue = data;
-    })
+    .then(data => data)
     .catch(err => err);
-  return resultvalue;
 };

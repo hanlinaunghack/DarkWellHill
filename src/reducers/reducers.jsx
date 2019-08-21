@@ -2,6 +2,8 @@ import InitialState from "../data/initialstate.jsx";
 
 const reducers = (state = InitialState, action) => {
   switch (action.type) {
+    case "SAVE_STATE":
+      return { ...state, main: action.data };
     case "SAVE_PLAYER":
       var obj = { ...state.main };
       obj.player.name = action.data.name;

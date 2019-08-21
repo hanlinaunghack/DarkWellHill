@@ -5,6 +5,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
+import ToggleLoading from "../../api/toggleLoading.jsx";
 import { save_file, load_file } from "../../api/savefile";
 
 const formStyle = {
@@ -15,7 +16,8 @@ class MenuComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      gender: "Male"
+      gender: "Male",
+      isLoading: true
     };
     this.genderHandler = this.genderHandler.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
@@ -23,6 +25,12 @@ class MenuComponent extends React.Component {
   async componentWillMount() {
     var data = await load_file("/api/tempfile");
     if (data) {
+      data = JSON.parse(data);
+      this.setState(ToggleLoading(this.state));
+      await Promise.resolve(this.props.saveState(data));
+      this.props.history.push("/home");
+    } else {
+      this.setState(ToggleLoading(this.state));
     }
   }
   async genderHandler(str) {
@@ -41,9 +49,12 @@ class MenuComponent extends React.Component {
     }
     await Promise.resolve(this.props.savePlayer({ name, gender }));
     await save_file(this.props.main, "/api/tempfile");
+    this.props.history.push("/home");
   }
   render() {
-    return (
+    return this.state.isLoading ? (
+      <div className="container">Loading...Please Wait...</div>
+    ) : (
       <div className="container">
         <form onSubmit={this.submitHandler} style={formStyle}>
           <InputGroup className="mb-3">
@@ -85,6 +96,7 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return {
+    saveState: data => dispatch({ type: "SAVE_STATE", data }),
     savePlayer: data => dispatch({ type: "SAVE_PLAYER", data })
   };
 }
