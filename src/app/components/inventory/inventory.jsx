@@ -4,27 +4,18 @@ import { withRouter } from "react-router-dom";
 import { save_file, load_file } from "../../api/savefile";
 import ToggleLoading from "../../api/toggleLoading.jsx";
 import SharedComponent from "../shared/shared.jsx";
-import InventoryComponent from "../inventory/inventory.jsx";
-import toggleInventory from "./helpers/toggleInventory.jsx";
+import ItemComponent from "./item.jsx";
 
 const titleStyle = {
   background: "#DDF3FE",
-  textAlign: "center",
-  paddingLeft: "20px"
+  display: "block"
 };
-const inventoryStyle = {
-  background: "#DDF3FE",
-  textAlign: "left",
-  paddingBottom: "20px"
-};
-class HomeComponent extends React.Component {
+class InventoryComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: true,
-      openInventory: false
+      isLoading: true
     };
-    this.inventoryHandler = this.inventoryHandler.bind(this);
   }
   async componentWillMount() {
     var data = await load_file("/api/tempfile");
@@ -37,21 +28,15 @@ class HomeComponent extends React.Component {
       this.props.history.push("/menu");
     }
   }
-  inventoryHandler() {
-    this.setState(toggleInventory);
-  }
   render() {
     return this.state.isLoading ? (
       <div className="container">Loading... Please Wait... </div>
     ) : (
       <div className="container">
-        <SharedComponent main={this.props.main} history={this.props.history} />
         <div style={titleStyle}>
-          <h3>Home</h3>
-          <div style={inventoryStyle}>
-            <button onClick={this.inventoryHandler}>Inventory</button>
-            {this.state.openInventory ? <InventoryComponent /> : ""}
-          </div>
+          {this.props.main.player.inventory.map((e, i) => (
+            <ItemComponent key={i} name={e.name} description={e.description} />
+          ))}
         </div>
       </div>
     );
@@ -70,5 +55,5 @@ export default withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(HomeComponent)
+  )(InventoryComponent)
 );
