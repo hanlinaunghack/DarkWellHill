@@ -3,8 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { save_file, load_file } from "../../api/savefile";
 import ToggleLoading from "../../api/toggleLoading.jsx";
-import SharedComponent from "../shared/shared.jsx";
-import ItemComponent from "./item.jsx";
+import Items from "./items.jsx";
 
 const titleStyle = {
   background: "#DDF3FE",
@@ -33,11 +32,9 @@ class InventoryComponent extends React.Component {
       <div className="container">Loading... Please Wait... </div>
     ) : (
       <div className="container">
-        <div style={titleStyle}>
-          {this.props.main.player.inventory.map((e, i) => (
-            <ItemComponent key={i} name={e.name} description={e.description} />
-          ))}
-        </div>
+        <table style={titleStyle}>
+          <Items main={this.props.main} />
+        </table>
       </div>
     );
   }

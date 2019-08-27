@@ -6,16 +6,17 @@ import ToggleLoading from "../../api/toggleLoading.jsx";
 import SharedComponent from "../shared/shared.jsx";
 import InventoryComponent from "../inventory/inventory.jsx";
 import toggleInventory from "./helpers/toggleInventory.jsx";
+import sleepHandlerHelper from "./helpers/sleep.jsx";
 
 const titleStyle = {
   background: "#DDF3FE",
   textAlign: "center",
-  paddingLeft: "20px"
+  paddingLeft: "30px"
 };
 const inventoryStyle = {
   background: "#DDF3FE",
   textAlign: "left",
-  paddingBottom: "20px"
+  paddingBottom: "30px"
 };
 class HomeComponent extends React.Component {
   constructor(props) {
@@ -25,12 +26,13 @@ class HomeComponent extends React.Component {
       openInventory: false
     };
     this.inventoryHandler = this.inventoryHandler.bind(this);
+    this.sleepHandler = this.sleepHandler.bind(this);
   }
   async componentWillMount() {
     var data = await load_file("/api/tempfile");
     if (data) {
       data = JSON.parse(data);
-      await Promise.resolve(this.props.saveState(data));
+      await Promise.resolve(this.props.saveMainState(data));
       this.setState(ToggleLoading(this.state));
     } else {
       //no data was loaded go to menu
@@ -39,6 +41,9 @@ class HomeComponent extends React.Component {
   }
   inventoryHandler() {
     this.setState(toggleInventory);
+  }
+  sleepHandler() {
+    sleepHandlerHelper(this.props.main, this.props.saveMainState);
   }
   render() {
     return this.state.isLoading ? (
@@ -50,6 +55,7 @@ class HomeComponent extends React.Component {
           <h3>Home</h3>
           <div style={inventoryStyle}>
             <button onClick={this.inventoryHandler}>Inventory</button>
+            <button onClick={this.sleepHandler}>Sleep</button>
             {this.state.openInventory ? <InventoryComponent /> : ""}
           </div>
         </div>
@@ -62,7 +68,7 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return {
-    saveState: data => dispatch({ type: "SAVE_STATE", data }),
+    saveMainState: data => dispatch({ type: "SAVE_STATE", data }),
     savePlayer: data => dispatch({ type: "SAVE_PLAYER", data })
   };
 }
