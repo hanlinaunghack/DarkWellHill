@@ -2,7 +2,7 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { delete_file, save_file, load_file } from "../../api/savefile.js";
+import MenuModalComponent from "./helper/menuModal.jsx";
 
 const customStyle = {
   backgroundColor: "#DDF3FE",
@@ -29,10 +29,8 @@ const SharedComponent = props => {
             {props.main.time.hour}:00
           </Col>
           <Col xs={1}>${props.main.player.money}</Col>
-          <Col xs={3}>
-            <button onClick={() => saveFile(props.main)}>Save</button>
-            <button onClick={loadFile}>Load</button>
-            <button onClick={() => deleteAllFiles(props)}>Delete</button>
+          <Col xs={2}>
+            <MenuModalComponent props={props} />
           </Col>
         </Row>
       </Container>
@@ -40,14 +38,4 @@ const SharedComponent = props => {
   );
 };
 
-function deleteAllFiles(props) {
-  delete_file("/api/deleteAllFiles");
-  props.history.push("/menu");
-}
-async function saveFile(data) {
-  await save_file(data, "/api/savefile");
-}
-async function loadFile() {
-  await load_file("/api/savefile");
-}
 export default SharedComponent;

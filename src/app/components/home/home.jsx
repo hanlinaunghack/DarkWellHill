@@ -2,11 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { save_file, load_file } from "../../api/savefile";
+import Button from "react-bootstrap/Button";
 import ToggleLoading from "../../api/toggleLoading.jsx";
 import SharedComponent from "../shared/shared.jsx";
 import InventoryComponent from "../inventory/inventory.jsx";
 import toggleInventory from "./helpers/toggleInventory.jsx";
 import sleepHandlerHelper from "./helpers/sleep.jsx";
+import TravelComponent from "./helpers/travel.jsx";
 
 const titleStyle = {
   background: "#DDF3FE",
@@ -16,8 +18,10 @@ const titleStyle = {
 const inventoryStyle = {
   background: "#DDF3FE",
   textAlign: "left",
-  paddingBottom: "30px"
+  paddingBottom: "30px",
+  display: "flex"
 };
+const homeTravelLocations = ["Fields"];
 class HomeComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -54,8 +58,13 @@ class HomeComponent extends React.Component {
         <div style={titleStyle}>
           <h3>Home</h3>
           <div style={inventoryStyle}>
-            <button onClick={this.inventoryHandler}>Inventory</button>
-            <button onClick={this.sleepHandler}>Sleep</button>
+            <Button variant="outline-secondary" onClick={this.inventoryHandler}>
+              Inventory
+            </Button>
+            <TravelComponent locations={homeTravelLocations} />
+            <Button variant="outline-secondary" onClick={this.sleepHandler}>
+              Sleep
+            </Button>
             {this.state.openInventory ? <InventoryComponent /> : ""}
           </div>
         </div>
