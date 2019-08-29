@@ -1,18 +1,11 @@
 import React from "react";
 import Image from "react-bootstrap/Image";
-import Pick from "../../images/Pick.png";
-import Hoe from "../../images/Hoe.png";
-import Axe from "../../images/Axe.png";
+import images from "../../images/index.jsx";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 
 const customStyle = {
   margin: "auto"
-};
-const items = {
-  Hoe,
-  Axe,
-  Pick
 };
 
 class ItemComponent extends React.Component {
@@ -36,13 +29,15 @@ class ItemComponent extends React.Component {
           placement="top"
           overlay={
             <Popover id="popover-basic">
-              <Popover.Title as="h3">{this.props.name}</Popover.Title>
+              <Popover.Title as="h3">
+                {formatNameWithDash(this.props.name)}
+              </Popover.Title>
               <Popover.Content>{this.props.description}</Popover.Content>
             </Popover>
           }
         >
           <Image
-            src={items[this.props.name]}
+            src={images[this.props.name]}
             roundedCircle
             fluid
             width={100}
@@ -54,4 +49,7 @@ class ItemComponent extends React.Component {
   }
 }
 
+function formatNameWithDash(name) {
+  return name.replace(/_/g, " ");
+}
 export default ItemComponent;

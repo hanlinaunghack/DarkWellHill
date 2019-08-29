@@ -19,7 +19,14 @@ const hoe = {
   type: "Tools",
   description: "Used to till the fields."
 };
+const can = {
+  name: "Watering_Can",
+  quantity: 1,
+  value: 0,
+  type: "Tools",
+  description: "Used to water the plants."
+};
 
-const tools = { axe, pick, hoe };
+const tools = { axe, pick, hoe, can };
 
 export default tools;

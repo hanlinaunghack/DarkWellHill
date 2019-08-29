@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import MenuComponent from "./app/components/menu/menu.jsx";
 import HomeComponent from "./app/components/home/home.jsx";
+import FieldsComponent from "./app/components/field/fields.jsx";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Redirect } from "react-router";
@@ -13,6 +14,7 @@ ReactDOM.render(
     <Router>
       <Route exact path="/menu" component={MenuComponent} />
       <Route exact path="/home" component={HomeComponent} />
+      <Route exact path="/fields" component={FieldsComponent} />
       <Route exact path="/" render={() => <Redirect to="menu" />} />
     </Router>
   </Provider>,

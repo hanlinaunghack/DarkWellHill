@@ -28,10 +28,27 @@ const timeProptype = {
   year: Proptypes.number,
   hour: Proptypes.number
 };
+const actionProptype = {
+  name: Proptypes.string,
+  requireItems: Proptypes.arrayOf(itemProptype),
+  energyCost: Proptypes.number,
+  timeCost: Proptypes.number
+};
+const fieldProptype = {
+  id: Proptypes.number,
+  name: Proptypes.string,
+  description: Proptypes.string,
+  image: Proptypes.string,
+  type: Proptypes.string,
+  actionTypes: Proptypes.arrayOf(actionProptype),
+  quality: Proptypes.number,
+  halfLife: Proptypes.number //in days
+};
 const main = {
   player: Proptypes.exact(playerProptype),
   weather: Proptypes.string,
-  time: Proptypes.exact(timeProptype)
+  time: Proptypes.exact(timeProptype),
+  field: Proptypes.arrayOf(fieldProptype)
 };
 
 export default main;
