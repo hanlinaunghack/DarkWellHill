@@ -5,6 +5,7 @@ import { save_file, load_file } from "../../api/savefile";
 import ToggleLoading from "../../api/toggleLoading.jsx";
 import SharedComponent from "../shared/shared.jsx";
 import Shared2Cmponent from "../shared/shared2.jsx";
+import Tiles from "./helper/tiles.jsx";
 
 const titleStyle = {
   background: "#DDF3FE",
@@ -49,7 +50,9 @@ class FieldsComponent extends React.Component {
               locations={fieldsTravelLocations}
             ></Shared2Cmponent>
           </div>
-          <div>...Coming soon...</div>
+          <table>
+            <Tiles main={this.props.main}></Tiles>
+          </table>
         </div>
       </div>
     );

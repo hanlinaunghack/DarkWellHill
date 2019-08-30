@@ -34,7 +34,7 @@ const actionProptype = {
   energyCost: Proptypes.number,
   timeCost: Proptypes.number
 };
-const fieldProptype = {
+const fieldsProptype = {
   id: Proptypes.number,
   name: Proptypes.string,
   description: Proptypes.string,
@@ -48,7 +48,7 @@ const main = {
   player: Proptypes.exact(playerProptype),
   weather: Proptypes.string,
   time: Proptypes.exact(timeProptype),
-  field: Proptypes.arrayOf(fieldProptype)
+  fields: Proptypes.arrayOf(fieldsProptype)
 };
 
 export default main;

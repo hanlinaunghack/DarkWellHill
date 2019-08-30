@@ -4,15 +4,21 @@ const reducers = (state = InitialState, action) => {
   switch (action.type) {
     case "SAVE_STATE":
       return { ...state, main: action.data };
-    case "SAVE_PLAYER":
-      var obj = { ...state.main };
-      obj.player.name = action.data.name;
-      obj.player.gender = action.data.gender;
+    case "SAVE_FIELDS":
+      let fieldsObject = { ...state.main };
+      fieldsObject.fields = action.data;
       return {
         ...state,
-        main: obj
+        main: fieldsObject
       };
-
+    case "SAVE_PLAYER":
+      let playerObject = { ...state.main };
+      playerObject.player.name = action.data.name;
+      playerObject.player.gender = action.data.gender;
+      return {
+        ...state,
+        main: playerObject
+      };
     default:
       return state;
   }
