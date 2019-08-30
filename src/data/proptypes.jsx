@@ -40,6 +40,7 @@ const fieldsProptype = {
   description: Proptypes.string,
   image: Proptypes.string,
   type: Proptypes.string,
+  isWorked: Proptypes.bool,
   actionTypes: Proptypes.arrayOf(actionProptype),
   quality: Proptypes.number,
   halfLife: Proptypes.number //in days

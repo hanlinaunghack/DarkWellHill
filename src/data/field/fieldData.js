@@ -7,7 +7,8 @@ module.exports.rock = {
   id: 0,
   actionTypes: [crush],
   quality: 0,
-  halfLife: 0
+  halfLife: 0,
+  isWorked: false
 };
 module.exports.tree = {
   name: "Trees",
@@ -17,7 +18,8 @@ module.exports.tree = {
   id: 0,
   actionTypes: [chop],
   quality: 0,
-  halfLife: 0
+  halfLife: 0,
+  isWorked: false
 };
 module.exports.treeStump = {
   name: "TreeStump",
@@ -27,7 +29,8 @@ module.exports.treeStump = {
   id: 0,
   actionTypes: [chop],
   quality: 0,
-  halfLife: 0
+  halfLife: 0,
+  isWorked: false
 };
 module.exports.soil = {
   name: "Soil",
@@ -37,7 +40,8 @@ module.exports.soil = {
   id: 0,
   actionTypes: [plow],
   quality: 0,
-  halfLife: 0
+  halfLife: 0,
+  isWorked: false
 };
 module.exports.tilledSoil = {
   name: "Tilled Soil",
@@ -47,7 +51,8 @@ module.exports.tilledSoil = {
   id: 0,
   actionTypes: [water],
   quality: 0,
-  halfLife: 0
+  halfLife: 0,
+  isWorked: false
 };
 
 // name: Proptypes.string,
