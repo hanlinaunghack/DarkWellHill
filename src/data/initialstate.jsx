@@ -1,4 +1,4 @@
-import Tools from "./startingtools.jsx";
+import { axe, hoe, pick, can } from "./startingtools.jsx";
 
 const initialState = {
   main: {
@@ -8,7 +8,7 @@ const initialState = {
       money: 100,
       energy: [100, 100],
       health: [100, 100],
-      inventory: [Tools.axe, Tools.hoe, Tools.pick, Tools.can],
+      inventory: [axe, hoe, pick, can],
       abilities: []
     },
     time: {

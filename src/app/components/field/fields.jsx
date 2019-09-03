@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { save_file, load_file } from "../../api/savefile";
+import { save_file, load_file } from "../../api/savefile.js";
+import { actionTrigger } from "../../../data/field/actionTrigger.jsx";
 import ToggleLoading from "../../api/toggleLoading.jsx";
 import SharedComponent from "../shared/shared.jsx";
 import Shared2Cmponent from "../shared/shared2.jsx";
@@ -25,6 +26,7 @@ class FieldsComponent extends React.Component {
     this.state = {
       isLoading: true
     };
+    this.actionHandler = this.actionHandler.bind(this);
   }
   async componentWillMount() {
     var data = await load_file("/api/tempfile");
@@ -36,6 +38,17 @@ class FieldsComponent extends React.Component {
       //no data was loaded go to menu
       this.props.history.push("/menu");
     }
+  }
+  async actionHandler(actionType, fieldId) {
+    let player = { ...this.props.main.player };
+    let fields = [...this.props.main.fields];
+    let actionObject = actionTrigger(actionType, fieldId, fields, player);
+    let mainObject = {
+      ...this.props.main,
+      player: actionObject.player,
+      fields: actionObject.fields
+    };
+    await Promise.resolve(this.props.saveMainState(mainObject));
   }
   render() {
     return this.state.isLoading ? (
@@ -51,7 +64,10 @@ class FieldsComponent extends React.Component {
             ></Shared2Cmponent>
           </div>
           <table>
-            <Tiles main={this.props.main}></Tiles>
+            <Tiles
+              main={this.props.main}
+              actionHandler={this.actionHandler}
+            ></Tiles>
           </table>
         </div>
       </div>

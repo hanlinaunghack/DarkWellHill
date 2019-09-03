@@ -8,7 +8,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/Button";
 import ToggleLoading from "../../api/toggleLoading.jsx";
 import { save_file, load_file } from "../../api/savefile";
-import { rock, soil, treeStump } from "../../../data/field/fieldData.js";
+import { rock, soil, treeStump } from "../../../data/field/fieldData.jsx";
 
 const formStyle = {
   width: "600px",

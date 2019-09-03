@@ -27,6 +27,4 @@ const can = {
   description: "Used to water the plants."
 };
 
-const tools = { axe, pick, hoe, can };
-
-export default tools;
+export { axe, pick, hoe, can };

@@ -8,21 +8,21 @@ const Tiles = props => {
         {props.main.fields
           .filter((e, i) => i < 3)
           .map((e, i) => (
-            <Tile key={i} tile={e}></Tile>
+            <Tile key={i} tile={e} actionHandler={props.actionHandler}></Tile>
           ))}
       </tr>
       <tr>
         {props.main.fields
           .filter((e, i) => i >= 3 && i < 6)
           .map((e, i) => (
-            <Tile key={i} tile={e}></Tile>
+            <Tile key={i} tile={e} actionHandler={props.actionHandler}></Tile>
           ))}
       </tr>
       <tr>
         {props.main.fields
           .filter((e, i) => i >= 6)
           .map((e, i) => (
-            <Tile key={i} tile={e}></Tile>
+            <Tile key={i} tile={e} actionHandler={props.actionHandler}></Tile>
           ))}
       </tr>
     </tbody>

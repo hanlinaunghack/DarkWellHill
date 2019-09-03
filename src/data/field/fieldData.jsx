@@ -1,5 +1,5 @@
-var { chop, crush, plow, water } = require("./actionTypes.js");
-module.exports.rock = {
+import { chop, crush, plow, water } from "./actionTypes.jsx";
+const rock = {
   name: "Rocks",
   description: `Use your pick to crush them.`,
   type: "Obstacle",
@@ -10,7 +10,7 @@ module.exports.rock = {
   halfLife: 0,
   isWorked: false
 };
-module.exports.tree = {
+const tree = {
   name: "Trees",
   description: `Use your axe to chop them.`,
   type: "Obstacle",
@@ -21,7 +21,7 @@ module.exports.tree = {
   halfLife: 0,
   isWorked: false
 };
-module.exports.treeStump = {
+const treeStump = {
   name: "TreeStump",
   description: `Use your axe to chop them.`,
   type: "Obstacle",
@@ -32,7 +32,7 @@ module.exports.treeStump = {
   halfLife: 0,
   isWorked: false
 };
-module.exports.soil = {
+const soil = {
   name: "Soil",
   description: `Untilled soiled, use your hoe to till the soil`,
   type: "Soil",
@@ -43,7 +43,7 @@ module.exports.soil = {
   halfLife: 0,
   isWorked: false
 };
-module.exports.tilledSoil = {
+const tilledSoil = {
   name: "Tilled Soil",
   description: `Tilled soiled, plant your vegetables`,
   type: "Soil",
@@ -55,6 +55,7 @@ module.exports.tilledSoil = {
   isWorked: false
 };
 
+export { rock, tree, treeStump, soil, tilledSoil };
 // name: Proptypes.string,
 // description: Proptypes.string,
 // image: Proptypes.string,

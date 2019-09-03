@@ -35,10 +35,10 @@ class Tile extends React.Component {
   }
   render() {
     return (
-      <td>
+      <td style={imageStyle}>
         {this.props.tile ? (
           <div style={[styles.image]} onClick={this.openHandler}>
-            <Image style={imageStyle} src={images[this.props.tile.image]} />
+            {this.props.tile.name}
           </div>
         ) : (
           ""
@@ -50,7 +50,17 @@ class Tile extends React.Component {
 
           <Modal.Body>
             {this.props.tile.actionTypes.map((e, i) => {
-              return <Button key={i}>{e.name}</Button>;
+              return (
+                <Button
+                  key={i}
+                  onClick={() => {
+                    this.closeHandler();
+                    this.props.actionHandler(e.name, this.props.tile.id);
+                  }}
+                >
+                  {e.name}
+                </Button>
+              );
             })}
           </Modal.Body>
         </Modal>
