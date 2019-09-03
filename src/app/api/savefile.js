@@ -18,3 +18,10 @@ module.exports.load_file = url => {
     .then(data => data)
     .catch(err => err);
 };
+
+module.exports.delete_file = url => {
+  return fetch(url)
+    .then(response => response.text())
+    .then(data => data)
+    .catch(err => err);
+};

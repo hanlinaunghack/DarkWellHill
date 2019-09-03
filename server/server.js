@@ -56,6 +56,21 @@ app.get("/api/tempfile", (req, res) => {
     return;
   }
 });
+app.get("/api/deleteAllFiles", (req, res) => {
+  try {
+    if (!fs.existsSync("./server/savefiles")) res.send("file not found!");
+    fs.unlinkSync("./server/savefiles/TempFile", err => {
+      if (err) throw err;
+    });
+    fs.unlinkSync("./server/savefiles/SaveFile", err => {
+      if (err) throw err;
+    });
+    res.send("success");
+  } catch {
+    res.send("");
+    return;
+  }
+});
 
 app.get("/*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../dist/index.html"), err => {
