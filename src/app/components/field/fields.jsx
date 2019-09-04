@@ -7,7 +7,7 @@ import ToggleLoading from "../../api/toggleLoading.jsx";
 import SharedComponent from "../shared/shared.jsx";
 import Shared2Cmponent from "../shared/shared2.jsx";
 import Tiles from "./helper/tiles.jsx";
-import { FieldObject } from "../../../data/field/fieldData.jsx";
+import mainProptype from "../../../data/proptypes.jsx";
 
 const titleStyle = {
   background: "#DDF3FE",
@@ -77,6 +77,7 @@ class FieldsComponent extends React.Component {
     );
   }
 }
+FieldsComponent.propType = mainProptype;
 function mapStateToProps(state) {
   return state;
 }

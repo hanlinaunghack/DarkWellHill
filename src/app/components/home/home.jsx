@@ -7,6 +7,7 @@ import ToggleLoading from "../../api/toggleLoading.jsx";
 import SharedComponent from "../shared/shared.jsx";
 import sleepHandlerHelper from "./helpers/sleep.jsx";
 import Shared2Cmponent from "../shared/shared2.jsx";
+import mainProptype from "../../../data/proptypes.jsx";
 
 const titleStyle = {
   background: "#DDF3FE",
@@ -68,6 +69,7 @@ class HomeComponent extends React.Component {
     );
   }
 }
+HomeComponent.propTypes = mainProptype;
 function mapStateToProps(state) {
   return state;
 }

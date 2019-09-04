@@ -56,11 +56,11 @@ const fieldsProptype = {
   quality: Proptypes.number,
   halfLife: Proptypes.number //in days
 };
-const main = {
+const mainProptype = {
   player: Proptypes.exact(playerProptype),
   weather: Proptypes.string,
   time: Proptypes.exact(timeProptype),
   fields: Proptypes.arrayOf(fieldsProptype)
 };
 
-export default main;
+export default mainProptype;
