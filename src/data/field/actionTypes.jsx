@@ -1,28 +1,24 @@
 import { axe, pick, hoe, can } from "../startingtools.jsx";
 
-const crush = {
-  name: "Crush",
-  requireItems: [pick],
-  energyCost: 5,
-  timeCost: 1
-};
-const chop = {
-  name: "Chop",
-  requireItems: [axe],
-  energyCost: 5,
-  timeCost: 1
-};
-const plow = {
-  name: "Plow",
-  requireItems: [hoe],
-  energyCost: 5,
-  timeCost: 1
-};
-const water = {
-  name: "Water",
-  requireItems: [can],
-  energyCost: 5,
-  timeCost: 1
+class ActionType {
+  constructor(name, requireItems, energyCost, timeCost) {
+    this.name = name;
+    this.requireItems = requireItems;
+    this.energyCost = energyCost;
+    this.timeCost = timeCost;
+  }
+}
+
+const Crush = new ActionType("Crush", [pick], 30, 1);
+const Chop = new ActionType("Chop", [axe], 30, 1);
+const Plow = new ActionType("Plow", [hoe], 20, 1);
+const Water = new ActionType("Water", [can], 20, 1);
+
+const actionTypes = {
+  Crush,
+  Chop,
+  Plow,
+  Water
 };
 
-export { crush, chop, plow, water };
+export default actionTypes;

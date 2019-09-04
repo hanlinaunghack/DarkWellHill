@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { save_file, load_file } from "../../api/savefile";
+import { save_file, load_file, load_parse } from "../../api/savefile";
 import Button from "react-bootstrap/Button";
 import ToggleLoading from "../../api/toggleLoading.jsx";
 import SharedComponent from "../shared/shared.jsx";
@@ -36,7 +36,7 @@ class HomeComponent extends React.Component {
   async componentWillMount() {
     var data = await load_file("/api/tempfile");
     if (data) {
-      data = JSON.parse(data);
+      data = load_parse(data);
       await Promise.resolve(this.props.saveMainState(data));
       this.setState(ToggleLoading(this.state));
     } else {

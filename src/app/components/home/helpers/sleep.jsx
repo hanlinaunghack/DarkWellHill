@@ -11,6 +11,10 @@ const sleepHandler = (main, dispatch) => {
       obj.time.year++;
     }
   }
+  //reset the field water level
+  obj.fields.forEach((e, i) => {
+    e.isWatered = false;
+  });
   //you gain health and energy
   obj.player.energy[0] = obj.player.energy[1];
   obj.player.health[0] = obj.player.health[1];

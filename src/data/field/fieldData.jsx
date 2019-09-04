@@ -1,59 +1,67 @@
-import { chop, crush, plow, water } from "./actionTypes.jsx";
+import actionTypes from "./actionTypes.jsx";
+
 const rock = {
   name: "Rocks",
-  description: `Use your pick to crush them.`,
   type: "Obstacle",
+  description: "Use your pick to crush them.",
   image: "rock",
-  id: 0,
-  actionTypes: [crush],
-  quality: 0,
-  halfLife: 0,
-  isWorked: false
+  actionTypes: [actionTypes.Crush]
 };
 const tree = {
   name: "Trees",
-  description: `Use your axe to chop them.`,
   type: "Obstacle",
-  image: "",
-  id: 0,
-  actionTypes: [chop],
-  quality: 0,
-  halfLife: 0,
-  isWorked: false
+  description: "Use your axe to chop them.",
+  image: "tree",
+  actionTypes: [actionTypes.Chop]
 };
 const treeStump = {
-  name: "TreeStump",
-  description: `Use your axe to chop them.`,
+  name: "Tree Stump",
   type: "Obstacle",
-  image: "treestump",
-  id: 0,
-  actionTypes: [chop],
-  quality: 0,
-  halfLife: 0,
-  isWorked: false
+  description: "Use your axe to chop them.",
+  image: "tree",
+  actionTypes: [actionTypes.Chop]
 };
 const soil = {
   name: "Soil",
-  description: `Untilled soiled, use your hoe to till the soil`,
   type: "Soil",
+  description: "Untilled soiled, use your hoe to till the soil.",
   image: "soil",
-  id: 0,
-  actionTypes: [plow],
-  quality: 0,
-  halfLife: 0,
-  isWorked: false
+  actionTypes: [actionTypes.Plow]
 };
 const tilledSoil = {
   name: "Tilled Soil",
-  description: `Tilled soiled, plant your vegetables`,
   type: "Soil",
+  description: "Tilled soiled, plant your vegetables.",
   image: "tilledsoil",
-  id: 0,
-  actionTypes: [water],
-  quality: 0,
-  halfLife: 0,
-  isWorked: false
+  actionTypes: [actionTypes.Water]
 };
+
+export class FieldObject {
+  constructor(fieldObject, idx = 0) {
+    this.name = fieldObject.name;
+    this.type = fieldObject.type;
+    this.image = fieldObject.image;
+    this.description = fieldObject.description;
+    this.actionTypes = fieldObject.actionTypes;
+    this.id = idx;
+    this.quality = 0;
+    this.halfLife = 0;
+    this.isWorked = false;
+    this.isWatered = false;
+  }
+  constructFieldObject(object, idx = 0) {
+    this.name = object.name;
+    this.type = object.type;
+    this.description = object.description;
+    this.actionTypes = object.actionTypes;
+    this.id = idx;
+  }
+  initializeRandomFieldObject(arr, i) {
+    let randomId = Math.floor(Math.random() * arr.length);
+    let randomedObj = arr[randomId] ? arr[randomId] : soil;
+    this.constructFieldObject(randomedObj, i);
+  }
+}
 
 export { rock, tree, treeStump, soil, tilledSoil };
 // name: Proptypes.string,

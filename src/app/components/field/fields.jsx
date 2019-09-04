@@ -1,12 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { save_file, load_file } from "../../api/savefile.js";
+import { save_file, load_file, load_parse } from "../../api/savefile.js";
 import { actionTrigger } from "../../../data/field/actionTrigger.jsx";
 import ToggleLoading from "../../api/toggleLoading.jsx";
 import SharedComponent from "../shared/shared.jsx";
 import Shared2Cmponent from "../shared/shared2.jsx";
 import Tiles from "./helper/tiles.jsx";
+import { FieldObject } from "../../../data/field/fieldData.jsx";
 
 const titleStyle = {
   background: "#DDF3FE",
@@ -31,7 +32,7 @@ class FieldsComponent extends React.Component {
   async componentWillMount() {
     var data = await load_file("/api/tempfile");
     if (data) {
-      data = JSON.parse(data);
+      data = load_parse(data);
       await Promise.resolve(this.props.saveMainState(data));
       this.setState(ToggleLoading(this.state));
     } else {
@@ -42,11 +43,13 @@ class FieldsComponent extends React.Component {
   async actionHandler(actionType, fieldId) {
     let player = { ...this.props.main.player };
     let fields = [...this.props.main.fields];
-    let actionObject = actionTrigger(actionType, fieldId, fields, player);
+    let time = { ...this.props.main.time };
+    let actionObject = actionTrigger(actionType, fieldId, fields, player, time);
     let mainObject = {
       ...this.props.main,
       player: actionObject.player,
-      fields: actionObject.fields
+      fields: actionObject.fields,
+      time: actionObject.time
     };
     await Promise.resolve(this.props.saveMainState(mainObject));
   }

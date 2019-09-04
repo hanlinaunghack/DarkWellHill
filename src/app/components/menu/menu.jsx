@@ -7,7 +7,8 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/Button";
 import ToggleLoading from "../../api/toggleLoading.jsx";
-import { save_file, load_file } from "../../api/savefile";
+import initializeFields from "./helper/initializeFields.jsx";
+import { save_file, load_file, load_parse } from "../../api/savefile";
 import { rock, soil, treeStump } from "../../../data/field/fieldData.jsx";
 
 const formStyle = {
@@ -27,7 +28,7 @@ class MenuComponent extends React.Component {
   async componentWillMount() {
     var data = await load_file("/api/tempfile");
     if (data) {
-      data = JSON.parse(data);
+      data = load_parse(data);
       this.setState(ToggleLoading(this.state));
       await Promise.resolve(this.props.saveState(data));
       this.props.history.push("/home");
@@ -50,7 +51,7 @@ class MenuComponent extends React.Component {
       return;
     }
     //generate random field types
-    var fields = randomField([rock, treeStump, soil]);
+    var fields = initializeFields([rock, treeStump, soil]);
     await Promise.resolve(this.props.saveFields({ fields }));
     await Promise.resolve(this.props.savePlayer({ name, gender }));
     await save_file(this.props.main, "/api/tempfile");
@@ -107,16 +108,7 @@ function mapDispatchToProps(dispatch) {
     saveFields: data => dispatch({ type: "SAVE_FIELDS", data: data.fields })
   };
 }
-function randomField(arr) {
-  var output = new Array(9).fill("");
-  return output.map((e, i) => {
-    let randomId = Math.floor(Math.random() * arr.length);
-    let randomedObj = arr[randomId] ? arr[randomId] : soil;
-    let obj = { ...randomedObj };
-    obj.id = i;
-    return obj;
-  });
-}
+
 export default withRouter(
   connect(
     mapStateToProps,

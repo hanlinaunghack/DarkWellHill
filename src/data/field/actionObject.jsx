@@ -1,29 +1,32 @@
-import { soil } from "./fieldData.jsx";
+import {
+  FieldObject,
+  rock,
+  tree,
+  treeStump,
+  soil,
+  tilledSoil
+} from "./fieldData.jsx";
 
-const actionEnergyCost = {
-  Chop: 30,
-  Water: 10,
-  Crush: 30,
-  Plow: 20
-};
 const actionFunctions = {
   Chop: chopFunction,
-  Water: 10,
+  Water: waterFunction,
   Crush: crushFunction,
-  Plow: 20
+  Plow: plowFunction
 };
 
-export { actionEnergyCost, actionFunctions };
+export { actionFunctions };
 function chopFunction(fieldId, fields) {
-  return fields.map((e, i) => {
-    if (i === fieldId) {
-      return { ...soil, id: fieldId };
-    } else {
-      return e;
-    }
-  });
+  let currField = fields[fieldId];
+  currField.constructFieldObject(soil);
+}
+function plowFunction(fieldId, fields) {
+  let currField = fields[fieldId];
+  currField.constructFieldObject(tilledSoil);
 }
 function crushFunction(fieldId, fields) {
-  fields[fieldId] = { ...soil, id: fieldId };
-  return fields;
+  let currField = fields[fieldId];
+  currField.constructFieldObject(soil);
+}
+function waterFunction(fieldId, fields) {
+  fields[fieldId].isWatered = true;
 }
