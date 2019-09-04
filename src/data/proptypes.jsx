@@ -22,6 +22,15 @@ const playerProptype = {
   abilities: Proptypes.arrayOf(abilityProptype),
   inventory: Proptypes.arrayOf(itemProptype)
 };
+const plantProptype = {
+  name: Proptypes.string,
+  season: Proptypes.string,
+  daysNeeded: Proptypes.number,
+  stage: Proptypes.number,
+  quality: Proptypes.number,
+  yield: Proptypes.number,
+  health: Proptypes.number
+};
 const timeProptype = {
   day: Proptypes.number,
   month: Proptypes.number,
@@ -40,6 +49,7 @@ const fieldsProptype = {
   description: Proptypes.string,
   image: Proptypes.string,
   type: Proptypes.string,
+  plant: Proptypes.exact(plantProptype),
   isWorked: Proptypes.bool,
   isWatered: Proptypes.bool,
   actionTypes: Proptypes.arrayOf(actionProptype),

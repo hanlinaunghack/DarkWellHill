@@ -44,6 +44,7 @@ export class FieldObject {
     this.description = fieldObject.description;
     this.actionTypes = fieldObject.actionTypes;
     this.id = idx;
+    this.plant = null;
     this.quality = 0;
     this.halfLife = 0;
     this.isWorked = false;
