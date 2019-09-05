@@ -1,4 +1,6 @@
 import { axe, hoe, pick, can } from "./startingtools.jsx";
+import Item from "../data/inventory/item.jsx";
+import { Character, habib } from "./npcCharacters/npcCharacters.jsx";
 
 const initialState = {
   main: {
@@ -8,7 +10,7 @@ const initialState = {
       money: 100,
       energy: [100, 100],
       health: [100, 100],
-      inventory: [axe, hoe, pick, can],
+      inventory: [new Item(axe), new Item(hoe), new Item(pick), new Item(can)],
       abilities: []
     },
     time: {
@@ -18,7 +20,13 @@ const initialState = {
       hour: 6
     },
     weather: "Sunny",
-    fields: [] //add to the list here!!
+    fields: [],
+    npc: {
+      traders: { habib: new Character(habib) },
+      nonTraders: [],
+      soldiers: [],
+      villains: []
+    }
   }
 };
 

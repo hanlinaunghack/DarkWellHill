@@ -1,13 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { save_file, load_file, load_parse } from "../../api/savefile";
-import Button from "react-bootstrap/Button";
+import { save_file, load_file, load_parse } from "../../api/savefile.js";
 import ToggleLoading from "../../api/toggleLoading.jsx";
 import SharedComponent from "../shared/shared.jsx";
-import sleepHandlerHelper from "./helpers/sleep.jsx";
 import Shared2Cmponent from "../shared/shared2.jsx";
 import mainProptype from "../../../data/proptypes/proptypes.jsx";
+import SellComponent from "../transaction/sell.jsx";
 
 const titleStyle = {
   background: "#DDF3FE",
@@ -20,19 +19,13 @@ const inventoryStyle = {
   paddingBottom: "30px",
   display: "flex"
 };
-const footerStyle = {
-  background: "#DDF3FE",
-  display: "flex",
-  paddingLeft: "30px"
-};
-const homeTravelLocations = ["fields"];
-class HomeComponent extends React.Component {
+const groceryTravelLocations = ["fields"];
+class GroceryStoreComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoading: true
     };
-    this.sleepHandler = this.sleepHandler.bind(this);
   }
   async componentWillMount() {
     var data = await load_file("/api/tempfile");
@@ -45,9 +38,6 @@ class HomeComponent extends React.Component {
       this.props.history.push("/menu");
     }
   }
-  sleepHandler() {
-    sleepHandlerHelper(this.props.main, this.props.saveMainState);
-  }
   render() {
     return this.state.isLoading ? (
       <div className="container">Loading... Please Wait... </div>
@@ -55,21 +45,24 @@ class HomeComponent extends React.Component {
       <div className="container">
         <SharedComponent main={this.props.main} history={this.props.history} />
         <div style={titleStyle}>
-          <h3>Home</h3>
+          <h3>Shopping Mart</h3>
           <div style={inventoryStyle}>
-            <Shared2Cmponent locations={homeTravelLocations}></Shared2Cmponent>
+            <Shared2Cmponent
+              locations={groceryTravelLocations}
+            ></Shared2Cmponent>
           </div>
-        </div>
-        <div style={footerStyle}>
-          <Button variant="outline-secondary" onClick={this.sleepHandler}>
-            Sleep
-          </Button>
+          <div>
+            This is the store{" "}
+            <SellComponent
+              npc={this.props.main.npc.traders.habib}
+            ></SellComponent>
+          </div>
         </div>
       </div>
     );
   }
 }
-HomeComponent.propTypes = mainProptype;
+GroceryStoreComponent.propType = mainProptype;
 function mapStateToProps(state) {
   return state;
 }
@@ -83,5 +76,5 @@ export default withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(HomeComponent)
+  )(GroceryStoreComponent)
 );

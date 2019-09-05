@@ -7,7 +7,7 @@ import ToggleLoading from "../../api/toggleLoading.jsx";
 import SharedComponent from "../shared/shared.jsx";
 import Shared2Cmponent from "../shared/shared2.jsx";
 import Tiles from "./helper/tiles.jsx";
-import mainProptype from "../../../data/proptypes.jsx";
+import mainProptype from "../../../data/proptypes/proptypes.jsx";
 
 const titleStyle = {
   background: "#DDF3FE",
@@ -20,7 +20,7 @@ const inventoryStyle = {
   paddingBottom: "30px",
   display: "flex"
 };
-const fieldsTravelLocations = ["home"];
+const fieldsTravelLocations = ["home", "store"];
 class FieldsComponent extends React.Component {
   constructor(props) {
     super(props);

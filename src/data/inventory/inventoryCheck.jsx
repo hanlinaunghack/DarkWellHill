@@ -13,11 +13,3 @@ const inventoryCheck = (playerInventory, reqItems) => {
 };
 
 export default inventoryCheck;
-//playerInventory
-// const itemProptype = {
-//   name: Proptypes.string,
-//   quantity: Proptypes.number,
-//   value: Proptypes.number,
-//   type: Proptypes.string,
-//   description: Proptypes.string
-// };
