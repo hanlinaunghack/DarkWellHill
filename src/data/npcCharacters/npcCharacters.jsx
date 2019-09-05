@@ -19,13 +19,16 @@ export class Character {
     this.inventory = this.inventory.map((e, i) => new Item(e));
   }
 }
-
+const cabbageSeeds = new Item(cabbageSeed);
+const lettuceSeeds = new Item(lettuceSeed);
+cabbageSeeds.changeQuantity(4);
+lettuceSeeds.changeQuantity(4);
 export const habib = {
   name: "Habib",
   id: 0,
   description: "Habib owns a general store that buys and sells useful goods.",
   image: "habib",
-  inventory: [new Item(cabbageSeed), new Item(lettuceSeed)],
+  inventory: [cabbageSeeds, lettuceSeeds],
   money: 600,
   gender: "male",
   health: [100, 100],
