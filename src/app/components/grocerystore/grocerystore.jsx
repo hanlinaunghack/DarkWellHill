@@ -6,12 +6,16 @@ import ToggleLoading from "../../api/toggleLoading.jsx";
 import SharedComponent from "../shared/shared.jsx";
 import Shared2Cmponent from "../shared/shared2.jsx";
 import mainProptype from "../../../data/proptypes/proptypes.jsx";
+import BuyComponent from "../transaction/buy.jsx";
 import SellComponent from "../transaction/sell.jsx";
 
 const titleStyle = {
   background: "#DDF3FE",
   textAlign: "center",
   paddingLeft: "30px"
+};
+const contentStyle = {
+  display: "flex"
 };
 const inventoryStyle = {
   background: "#DDF3FE",
@@ -53,9 +57,15 @@ class GroceryStoreComponent extends React.Component {
           </div>
           <div>
             This is the store{" "}
-            <SellComponent
-              npc={this.props.main.npc.traders.habib}
-            ></SellComponent>
+            <div style={contentStyle}>
+              <SellComponent
+                player={this.props.main.player}
+                tradableTypes={this.props.main.npc.traders.habib.tradableTypes}
+              ></SellComponent>
+              <BuyComponent
+                npc={this.props.main.npc.traders.habib}
+              ></BuyComponent>
+            </div>
           </div>
         </div>
       </div>

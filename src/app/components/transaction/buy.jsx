@@ -1,5 +1,5 @@
 import React from "react";
-import PlayerInventory from "./playerInventory.jsx";
+import SellerInventory from "./sellerInventory.jsx";
 import Button from "react-bootstrap/Button";
 
 const customStyle = {
@@ -9,7 +9,7 @@ const customStyle = {
 const contentContainer = {
   border: "solid black 1px",
   padding: "30px",
-  marginRight: "30px"
+  marginLeft: "30px"
 };
 const BuyComponent = props => {
   return (
@@ -17,24 +17,22 @@ const BuyComponent = props => {
       <table>
         <thead>
           <tr>
-            <td>Your Items</td>
+            <td>Seller's Items</td>
             <td>Value</td>
             <td>Quantity</td>
             <td></td>
           </tr>
         </thead>
         <tbody>
-          {props.player.inventory
-            .filter((e, i) => props.tradableTypes.indexOf(e.type) > -1)
-            .map((e, i) => (
-              <PlayerInventory key={i} item={e}></PlayerInventory>
-            ))}
+          {props.npc.inventory.map((e, i) => (
+            <SellerInventory key={i} item={e}></SellerInventory>
+          ))}
           <tr>
-            <td>Your Money</td>
-            <td>{props.player.money}</td>
+            <td>Seller's Money</td>
+            <td>{props.npc.money}</td>
             <td>
               <Button variant="success" style={customStyle}>
-                Sell
+                Buy
               </Button>
             </td>
             <td style={customStyle}>

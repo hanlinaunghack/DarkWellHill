@@ -8,3 +8,5 @@ const PlayerInventory = props => {
     </tr>
   );
 };
+
+export default PlayerInventory;
