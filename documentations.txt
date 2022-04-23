@@ -1,0 +1,28 @@
+*** Plant Growths And Yields ***
+data/configurations.jsx >> fieldConfigurations
+data/dataDef/field.jsx >> plantRef
+
+*** Research and Unlockables ***
+data/initialState/unlockables.jsx
+data/dataDef/researchTree.jsx
+data/dataDef/researchTree.jsx >> researchFunc (where bonuses to characters are applied)
+app/components/home/research.component.jsx (where the research ui is housed)
+
+*** Items and Inventory ***
+data/dataDef/items/items.jsx
+data/dataDef/items/itemRef.jsx
+data/dataDef/items/itemUse.jsx
+
+*** Events and Messages ***
+data/initialState/eventList.jsx
+data/dataDef/eventList/*.jsx
+data/dataDef/message.jsx
+
+*** NPC Replenishments ***
+app/components/home/endOfDay.jsx
+app/components/shared/npcReplenishment.utility/npcReplenishment.utility.jsx
+data/dataDef/npcReplenishment.jsx
+
+*** NPC Transactions ***
+app/components/base/basevender.component.jsx
+app/components/base/basevender.transaction.jsx

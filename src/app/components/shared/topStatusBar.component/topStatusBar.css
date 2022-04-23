@@ -1,0 +1,45 @@
+div .progress {
+  height: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+.progress-bar-bundle {
+  width: 10rem;
+  max-width: 10rem;
+  padding: 0.5rem;
+}
+.col.progress-bar-bundle {
+  padding-left: 0.15rem;
+}
+
+.status-bar {
+  display: flex;
+}
+.statusbar-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.statusbar-label {
+  vertical-align: middle;
+  margin-left: 0.5rem;
+}
+.statusbar-container {
+  display: block;
+}
+
+.money {
+  display: flex;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 1rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.progress-bar-label {
+  padding-left: 1.5rem;
+}
+.progress-bar-label > p {
+  font-size: 0.8rem;
+  line-height: 0.75rem;
+  margin-bottom: 0.45rem;
+  margin-top: 0.4rem;
+}

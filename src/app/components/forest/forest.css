@@ -1,0 +1,68 @@
+.basket-container {
+  width: 7rem;
+}
+.basket-input {
+  max-width: 6rem;
+  width: 6rem;
+}
+.title-container {
+  display: flex;
+}
+.title-image {
+  height: 15rem;
+}
+.title-option-buttons {
+  display: flex;
+}
+.option-button {
+  align-self: flex-end;
+  min-width: 8rem;
+  min-height: 3rem;
+}
+.selected {
+  background-color: azure;
+}
+
+.npc-money-text {
+  padding-left: 3rem;
+  align-self: flex-end;
+  margin-bottom: 0rem;
+}
+
+h3.title-label {
+  width: 80%;
+}
+
+.forest-field-container {
+  display: flex;
+}
+
+.forest-field-container > div {
+  padding: 0 3rem 0 3rem;
+  min-width: 18rem;
+  text-align: center;
+}
+
+.field-plots-container {
+  display: grid;
+  justify-content: center;
+}
+
+.field-plot {
+  border: 1px solid black;
+  width: 7rem;
+  height: 7rem;
+  margin: 0.5rem;
+}
+.field-plot:hover {
+  cursor: pointer;
+}
+
+.field-plot-image {
+  max-height: 5rem;
+  max-width: 5rem;
+}
+.field-plot-label {
+  margin: 0;
+  font-size: 1rem;
+}

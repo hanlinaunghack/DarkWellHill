@@ -1,0 +1,30 @@
+.basket-container {
+  width: 7rem;
+}
+.basket-input {
+  max-width: 6rem;
+  width: 6rem;
+}
+.title-container {
+  display: flex;
+}
+.title-image {
+  height: 15rem;
+}
+.title-option-buttons {
+  display: flex;
+}
+.option-button {
+  align-self: flex-end;
+  min-width: 8rem;
+  min-height: 3rem;
+}
+.selected {
+  background-color: azure;
+}
+
+.npc-money-text {
+  padding-left: 3rem;
+  align-self: flex-end;
+  margin-bottom: 0rem;
+}
