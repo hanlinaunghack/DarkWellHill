@@ -16,6 +16,7 @@
     "cors": "^2.8.5",
     "css-loader": "^3.0.0",
     "express": "^4.17.1",
+    "file-loader": "^4.2.0",
     "fs": "0.0.1-security",
     "mongodb": "^3.2.7",
     "mongoose": "^5.6.3",

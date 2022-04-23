@@ -15,16 +15,29 @@ module.exports = {
       },
       {
         test: /\.css$/,
+<<<<<<< HEAD
         use: ["style-loader", "css-loader"],
+=======
+        use: ["style-loader", "css-loader"]
+>>>>>>> 9f8bb1c929103c2f3a6ff3b2bda33737c640d703
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
         use: [
           {
+<<<<<<< HEAD
             loader: "file-loader",
           },
         ],
       },
     ],
   },
+=======
+            loader: "file-loader"
+          }
+        ]
+      }
+    ]
+  }
+>>>>>>> 9f8bb1c929103c2f3a6ff3b2bda33737c640d703
 };
