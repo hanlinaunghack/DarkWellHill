@@ -38,6 +38,7 @@ import navTavern from "../images/navIcons/tavern.png";
 import navSleep from "../images/navIcons/sleep.png";
 import navHome from "../images/navIcons/home.png";
 import navJacksHut from "../images/navIcons/lumberJack.png";
+import navLibrary from "../images/navIcons/library.png";
 
 import vegetableIcon from "../images/statusbarIcons/vegetableIcon.png";
 
@@ -89,6 +90,7 @@ export const NAVICON = {
   sleep: navSleep,
   home: navHome,
   jacksHut: navJacksHut,
+  library: navLibrary,
 };
 
 export const STATUSBAR_ICON = {

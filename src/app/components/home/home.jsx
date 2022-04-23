@@ -52,6 +52,20 @@ class HomeComponent extends BaseComponent {
               >
                 <img title="Forest" className="nav" src={this.navIcon.forest} />
               </Button>
+              {this.props.main.unlockables.researchBook ? (
+                <Button
+                  className="nav"
+                  onClick={(event) => this.navigationHandler("library")}
+                >
+                  <img
+                    title="Library"
+                    className="nav"
+                    src={this.navIcon.library}
+                  />
+                </Button>
+              ) : (
+                <></>
+              )}
               <Button className="nav" onClick={this.sleepHandler}>
                 <img title="Sleep" className="nav" src={this.navIcon.sleep} />
               </Button>

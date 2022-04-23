@@ -1,3 +1,4 @@
 node_modules
 server/savefiles
-dist
+dist/*.png
+dist/bundle.js
