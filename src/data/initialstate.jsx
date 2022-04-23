@@ -1,24 +1,24 @@
-import Tools from "./startingtools.jsx";
+import { player, time, display } from "./initialState/playerData.jsx";
+import { farm } from "./initialState/farmData.jsx";
+import { eventList } from "./initialState/eventList.jsx";
+import { npcData, villageData } from "./initialState/npcData.jsx";
+import { forestData } from "./initialState/forestData.jsx";
+import { unlockables } from "./initialState/unlockables.jsx";
 
 const initialState = {
   main: {
-    player: {
-      name: "",
-      gender: "Male",
-      money: 100,
-      energy: [100, 100],
-      health: [100, 100],
-      inventory: [Tools.axe, Tools.hoe, Tools.pick],
-      abilities: []
-    },
-    time: {
-      day: 10,
-      month: 1,
-      year: 103,
-      hour: 6
-    },
-    weather: "Sunny"
-  }
+    display,
+    player,
+    npcData,
+    time,
+    farm,
+    villageData,
+    forestData,
+    currentLocation: "home",
+    weather: "Sunny",
+    eventList,
+    unlockables,
+  },
 };
 
 export default initialState;

@@ -1,58 +1,74 @@
 import React from "react";
+import BaseComponent from "../base/base.component.jsx";
+import Button from "react-bootstrap/Button";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { save_file, load_file } from "../../api/savefile";
-import ToggleLoading from "../../api/toggleLoading.jsx";
+import {
+  mapStateToProps,
+  mapDispatchToProps,
+} from "../../../reducers/utility.jsx";
 import SharedComponent from "../shared/shared.jsx";
+import LoadingScreen from "../shared/loadingScreen.component/loadingScreen.component.jsx";
+import ResearchComponent from "./research.component.jsx";
+import FarmComponent from "../farm/farm.component.jsx";
+import endOfDay from "./endOfDay.jsx";
+import "./home.css";
 
-const titleStyle = {
-  background: "#DDF3FE",
-  textAlign: "center",
-  paddingBottom: "20px"
-};
-class HomeComponent extends React.Component {
+class HomeComponent extends BaseComponent {
   constructor(props) {
     super(props);
+    this.componentName = "home";
+    this.sleepHandler = this.sleepHandler.bind(this);
     this.state = {
-      isLoading: true
+      isLoading: true,
     };
   }
-  async componentWillMount() {
-    var data = await load_file("/api/tempfile");
-    if (data) {
-      data = JSON.parse(data);
-      await Promise.resolve(this.props.saveState(data));
-      this.setState(ToggleLoading(this.state));
-    } else {
-      //no data was loaded go to menu
-      this.props.history.push("/menu");
-    }
+  sleepHandler() {
+    endOfDay({
+      main: this.props.main,
+      saveState: this.props.saveState,
+      nextEventFinder: this.nextEventFinder.bind(this),
+    });
   }
   render() {
     return this.state.isLoading ? (
-      <div className="container">Loading... Please Wait... </div>
+      <LoadingScreen></LoadingScreen>
     ) : (
       <div className="container">
-        <SharedComponent main={this.props.main} />
-        <div style={titleStyle}>
-          <h3>Home</h3>
+        <SharedComponent />
+        <div>
+          <div className="title-container">
+            <h3 className="title-label">Home</h3>
+            <div className="buttons-container">
+              <Button
+                className="nav"
+                onClick={(event) => this.navigationHandler("market")}
+              >
+                <img title="Market" className="nav" src={this.navIcon.market} />
+              </Button>
+              <Button
+                className="nav"
+                onClick={(event) => this.navigationHandler("forest")}
+              >
+                <img title="Forest" className="nav" src={this.navIcon.forest} />
+              </Button>
+              <Button className="nav" onClick={this.sleepHandler}>
+                <img title="Sleep" className="nav" src={this.navIcon.sleep} />
+              </Button>
+            </div>
+          </div>
+          <FarmComponent></FarmComponent>
+          <ResearchComponent
+            main={this.props.main}
+            savePlayer={this.props.savePlayer}
+            saveResearchTree={this.props.saveResearchTree}
+          ></ResearchComponent>
         </div>
       </div>
     );
   }
 }
-function mapStateToProps(state) {
-  return state;
-}
-function mapDispatchToProps(dispatch) {
-  return {
-    saveState: data => dispatch({ type: "SAVE_STATE", data }),
-    savePlayer: data => dispatch({ type: "SAVE_PLAYER", data })
-  };
-}
+
 export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(HomeComponent)
+  connect(mapStateToProps, mapDispatchToProps)(HomeComponent)
 );

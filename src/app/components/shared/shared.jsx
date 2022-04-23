@@ -1,30 +1,26 @@
 import React from "react";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import { connect } from "react-redux";
+import {
+  mapStateToProps,
+  mapDispatchToProps,
+} from "../../../reducers/utility.jsx";
+import CombinedStatusBars from "./combinedStatusBars.jsx";
+import BottomMessageWindow from "./bottomMessageWindow.component/bottomMessageWindow.component.jsx";
+import InventoryWindow from "./inventoryWindow.component/inventoryWindow.component.jsx";
 
-const customStyle = {
-  backgroundColor: "#DDF3FE",
-  padding: "30px",
-  paddingBottom: "60px",
-  height: "50px"
-};
-const SharedComponent = props => {
-  return (
-    <div style={customStyle}>
-      <Container>
-        <Row>
-          <Col>Name: {props.main.player.name}</Col>
-          <Col>Weather: {props.main.weather}</Col>
-          <Col>
-            Date: {props.main.time.month}/{props.main.time.day}/
-            {props.main.time.year}
-          </Col>
-          <Col>{props.main.time.hour}:00</Col>
-        </Row>
-      </Container>
-    </div>
-  );
-};
+class SharedComponent extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <InventoryWindow></InventoryWindow>
+        <CombinedStatusBars></CombinedStatusBars>
+        <BottomMessageWindow></BottomMessageWindow>
+      </div>
+    );
+  }
+}
 
-export default SharedComponent;
+export default connect(mapStateToProps, mapDispatchToProps)(SharedComponent);

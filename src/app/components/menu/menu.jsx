@@ -5,19 +5,26 @@ import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
+import Button from "react-bootstrap/Button";
 import ToggleLoading from "../../api/toggleLoading.jsx";
+import Character from "../../../data/dataDef/character.jsx";
 import { save_file, load_file } from "../../api/savefile";
+import {
+  mapStateToProps,
+  mapDispatchToProps,
+} from "../../../reducers/utility.jsx";
+import "./menu.css";
 
 const formStyle = {
-  width: "600px",
-  paddingTop: "50px"
+  width: "50rem",
+  paddingTop: "50px",
 };
 class MenuComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       gender: "Male",
-      isLoading: true
+      isLoading: true,
     };
     this.genderHandler = this.genderHandler.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
@@ -26,7 +33,6 @@ class MenuComponent extends React.Component {
     var data = await load_file("/api/tempfile");
     if (data) {
       data = JSON.parse(data);
-      this.setState(ToggleLoading(this.state));
       await Promise.resolve(this.props.saveState(data));
       this.props.history.push("/home");
     } else {
@@ -36,7 +42,7 @@ class MenuComponent extends React.Component {
   async genderHandler(str) {
     this.setState({
       ...this.state,
-      gender: str
+      gender: str,
     });
   }
   async submitHandler(event) {
@@ -47,9 +53,16 @@ class MenuComponent extends React.Component {
       alert("You must type in a valid name!");
       return;
     }
-    await Promise.resolve(this.props.savePlayer({ name, gender }));
+    await Promise.resolve(
+      this.props.savePlayer(
+        new Character({ ...this.props.main.player, name, gender })
+      )
+    );
     await save_file(this.props.main, "/api/tempfile");
-    this.props.history.push("/home");
+    this.setState({ ...this.state, isLoading: true });
+    setTimeout(() => {
+      this.props.history.push("/home");
+    }, 200);
   }
   render() {
     return this.state.isLoading ? (
@@ -69,7 +82,10 @@ class MenuComponent extends React.Component {
               maxLength="10"
               name="playerDetail"
             />
-            <InputGroup.Text id="inputGroup-sizing-default">
+            <InputGroup.Text
+              id="inputGroup-sizing-default"
+              className="input-group-c"
+            >
               What is your gender?
             </InputGroup.Text>
             <DropdownButton
@@ -86,23 +102,12 @@ class MenuComponent extends React.Component {
               </Dropdown.Item>
             </DropdownButton>
           </InputGroup>
+          <Button type="submit">Confirm</Button>
         </form>
       </div>
     );
   }
 }
-function mapStateToProps(state) {
-  return state;
-}
-function mapDispatchToProps(dispatch) {
-  return {
-    saveState: data => dispatch({ type: "SAVE_STATE", data }),
-    savePlayer: data => dispatch({ type: "SAVE_PLAYER", data })
-  };
-}
 export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(MenuComponent)
+  connect(mapStateToProps, mapDispatchToProps)(MenuComponent)
 );
